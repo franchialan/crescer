@@ -1,0 +1,53 @@
+###################################################
+
+Desinstale versões antigas 
+Versões mais antigas do Docker eram chamadas dockerde , docker.io, ou docker-engine. Se estes estiverem instalados, desinstale-os:
+
+$ sudo apt-get remove docker docker-engine docker.io containerd runc
+
+Configurar o repositório
+Atualize o aptíndice de pacotes e instale pacotes para permitir apto uso de um repositório por HTTPS:
+
+$ sudo apt-get update
+$ sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+Adicione a chave GPG oficial do Docker:
+
+$ sudo mkdir -p /etc/apt/keyrings
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+Instalar o mecanismo Docker
+Atualize o aptíndice de pacotes e instale a versão mais recente do Docker Engine, containerd e Docker Compose ou vá para a próxima etapa para instalar uma versão específica:
+
+$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+Confirme se o Docker está sendo executado
+$ sudo systemctl status docker
+
+###################################################
+
+Para criar o dockergrupo e adicionar seu usuário:
+
+Crie o dockergrupo.
+
+$ sudo groupadd docker
+
+Adicione seu usuário ao dockergrupo.
+
+$ sudo usermod -aG docker $USER
+
+Saia e faça login novamente para que sua associação ao grupo seja reavaliada.
+Se estiver testando em uma máquina virtual, pode ser necessário reiniciar a máquina virtual para que as alterações entrem em vigor.
+Em um ambiente Linux de desktop como o X Windows, saia completamente da sua sessão e, em seguida, faça login novamente.
+No Linux, você também pode executar o seguinte comando para ativar as alterações nos grupos:
+
+$ newgrp docker
+
+###################################################
+
+link para apoio: https://docs.docker.com/engine/install/ubuntu/
